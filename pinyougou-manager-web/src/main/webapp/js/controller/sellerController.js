@@ -75,5 +75,19 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
+	
+	//更新审核
+	$scope.updateStatus=function (sellerId,status) {
+		sellerService.updateStatus(sellerId,status).success(
+			function (response) {
+				if(response.success){
+                    $scope.reloadList();//重新加载
+				}else{
+					alert("shibai")
+				}
+
+            }
+		)
+    }
     
 });	

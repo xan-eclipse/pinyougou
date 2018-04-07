@@ -75,5 +75,17 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
-    
+
+	//保存
+	$scope.add=function () {
+		goodsService.add($scope.entity).success(
+			function (response) {
+				if(response.success){
+					$scope.entity={};
+				}else{
+					alert(response.message);
+				}
+            }
+		)
+    }
 });	
