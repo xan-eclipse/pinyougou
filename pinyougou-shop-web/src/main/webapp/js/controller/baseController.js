@@ -1,5 +1,5 @@
  //品牌控制层 
-app.controller('baseController' ,function($scope){	
+app.controller('baseController' ,function($scope){
 	
     //重新加载列表 数据
     $scope.reloadList=function(){
@@ -42,4 +42,14 @@ app.controller('baseController' ,function($scope){
         }
         return value;
     }
+
+    $scope.searchObjectByKey=function(list,key,keyValue){
+        for(var i=0;i<list.length;i++){
+            if(list[i][key]==keyValue){
+                return list[i];
+            }
+        }
+        return null;
+    }
+
 });	

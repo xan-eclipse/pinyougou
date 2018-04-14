@@ -88,4 +88,30 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
             }
 		)
     }
+
+    $scope.status=['未审核','已审核','审核未通过','关闭'];//商品状态
+    $scope.itemCatLits=[];
+	$scope.findItemCatList=function () {
+		 itemCatService.findAll().success(
+		 	function (response) {
+			 	for(var i=0;i<response.length;i++){
+			 		$scope.itemCatLits[response[i].id]=response[i].name;
+				}
+         })
+    }
+
+    //更改状态
+    $scope.updateStatus=function(status){
+        goodsService.updateStatus($scope.selectIds,status).success(
+            function(response){
+                if(response.success){//成功
+                    $scope.reloadList();//刷新列表
+                    $scope.selectIds=[];//清空ID集合
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
+
 });	
